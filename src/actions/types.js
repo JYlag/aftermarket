@@ -17,10 +17,10 @@ export const SWITCH_TO_LOGIN = 'switch_to_login';
 
 export const SIGN_OUT = 'sign_out';
 
-//ADD TICKET ITEMS
-export const TICKET_UPDATED = 'ticket_updated';
-export const TICKET_CREATE = 'ticket_create';
-export const TICKET_FETCH_SUCCESS = 'ticket_fetch_success';
+//ADD EVENTS ITEMS
+export const EVENT_UPDATED = 'event_updated';
+export const EVENT_CREATE = 'event_create';
+export const EVENT_FETCH_SUCCESS = 'event_fetch_success';
 
 //ADD SHOES ITEMS
 
@@ -38,3 +38,8 @@ export const ELECTRONICS_FETCH_SUCCESS = 'electronics_fetch_success';
 export const CLOTHING_UPDATED = 'clothing_updated';
 export const CLOTHING_CREATE = 'clothing_create';
 export const CLOTHING_FETCH_SUCCESS = 'clothing_fetch_success';
+
+//ADD TICKETS ITEMS
+export const TICKET_UPDATED = 'ticket_updated';
+export const TICKET_CREATE = 'ticket_create';
+export const TICKET_FETCH_SUCCESS = 'ticket_fetch_success';

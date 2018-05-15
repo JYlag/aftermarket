@@ -30,10 +30,10 @@ class Main extends Component {
                     <View style={{ flex: 15, flexDirection: 'column' }}>
                         <View style={ sectionStyle }>
                             <View style={[ categoryStyle, {backgroundColor: '#3F51B5'} ]}>
-                                <Text style={ categoryTitleStyle }>Tickets</Text>
+                                <Text style={ categoryTitleStyle }>Events</Text>
                                 <View style={ iconStyle }>
                                     <TouchableOpacity
-                                        onPress={ () => { Actions.ticket_inventory() } }
+                                        onPress={ () => { Actions.event_inventory() } }
                                         style={{ flex:1 }}
                                     >
                                         <MaterialCommunityIcon

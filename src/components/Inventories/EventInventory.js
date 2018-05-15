@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { View, ListView } from 'react-native';
 import { connect } from 'react-redux';
+import { fetchEvents } from "../../actions/ItemActions/EventActions";
 import _ from 'lodash';
-import {fetchTickets} from "../../actions/ItemActions/TicketActions";
-import TicketItem from "../InventoryItems/Events/TicketItem";
+import EventItem from "../InventoryItems/Events/EventItem";
 
 
-
-class TicketInventory extends Component {
+class EventInventory extends Component {
 
     componentWillMount() {
-        this.props.fetchTickets(this.props.tickets.eventName);
+        this.props.fetchEvents();
 
         this.createDataSource( this.props );
     }
@@ -22,17 +21,17 @@ class TicketInventory extends Component {
         this.createDataSource(nextProps)
     }
 
-    createDataSource({ tickets }) {
+    createDataSource({ events }) {
 
         const ds = new ListView.DataSource({
             rowHasChanged: (r1,r2) => r1 !== r2
         });
 
-        this.dataSource = ds.cloneWithRows(tickets);
+        this.dataSource = ds.cloneWithRows(events);
     }
 
-    renderTickets(ticket) {
-        return <TicketItem ticket={ ticket } />
+    renderEvents(event) {
+        return <EventItem event={ event } />
     }
 
     render() {
@@ -41,7 +40,7 @@ class TicketInventory extends Component {
                 <ListView
                     enableEmptySections
                     dataSource={this.dataSource}
-                    renderRow={this.renderTickets}
+                    renderRow={this.renderEvents}
                     style={{ }}
                 />
             </View>
@@ -50,11 +49,11 @@ class TicketInventory extends Component {
 }
 
 const mapStateToProps = state => {
-    const tickets = _.map(state.items, ( val, uid ) => {
+    const events = _.map(state.items, ( val, uid ) => {
         return {...val, uid};
     });
 
-    return { tickets };
+    return { events };
 };
 
-export default connect(mapStateToProps, { fetchTickets })(TicketInventory);
+export default connect(mapStateToProps, { fetchEvents })(EventInventory);

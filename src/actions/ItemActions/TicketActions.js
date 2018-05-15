@@ -7,10 +7,10 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
 export const ticketUpdated = ({ prop, value}) => {
-  return {
-      type: TICKET_UPDATED,
-      payload: { prop, value}
-  };
+    return {
+        type: TICKET_UPDATED,
+        payload: { prop, value}
+    };
 };
 
 export const ticketCreate = ({ eventName, quantity, retailPrice, resellPrice, section, row, seat, otherInfo, eventDate, sellDate}) => {
@@ -18,7 +18,7 @@ export const ticketCreate = ({ eventName, quantity, retailPrice, resellPrice, se
     const { currentUser } = firebase.auth();
 
     return (dispatch) => {
-        firebase.database().ref(`users/${currentUser.uid}/tickets`)
+        firebase.database().ref(`users/${currentUser.uid}/events/${eventName}`)
             .push({
                 eventName,
                 quantity,
@@ -38,12 +38,12 @@ export const ticketCreate = ({ eventName, quantity, retailPrice, resellPrice, se
     };
 };
 
-export const fetchTickets = () => {
+export const fetchTickets = ( eventName ) => {
 
     const { currentUser } = firebase.auth();
 
     return ( dispatch ) => {
-        firebase.database().ref(`users/${currentUser.uid}/tickets`)
+        firebase.database().ref(`users/${currentUser.uid}/events/${eventName}`)
             .on( 'value', snapshot => {
                 dispatch({ type: TICKET_FETCH_SUCCESS, payload: snapshot.val() })
             });

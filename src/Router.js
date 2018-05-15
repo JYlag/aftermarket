@@ -3,19 +3,22 @@ import { Scene, Router } from 'react-native-router-flux';
 import LoginForm from './components/Auth/LoginForm';
 import SignUpForm from './components/Auth/SignUpForm';
 import { Actions } from 'react-native-router-flux';
-import AddTickets from "./components/AddItem/AddTickets";
 import Add from 'react-native-vector-icons/MaterialCommunityIcons'
 import {TouchableWithoutFeedback} from "react-native";
 import Main from "./components/Main";
-import TicketInventory from "./components/Inventories/TicketInventory";
 import ShoesInventory from "./components/Inventories/ShoesInventory";
 import AddShoes from "./components/AddItem/AddShoes";
 import ElectronicsInventory from "./components/Inventories/ElectronicsInventory";
 import AddElectronics from "./components/AddItem/AddElectronics";
 import AddClothing from "./components/AddItem/AddClothing";
 import ClothingInventory from "./components/Inventories/ClothingInventory";
-import MainTest from './components/MainTest';
+import TicketInformation from './components/InventoryItems/Events/TicketInformation';
 import SignUpConfirmation from "./components/Auth/SignUpConfirmation";
+import EventInventory from "./components/Inventories/EventInventory";
+import AddEvents from "./components/AddItem/AddEvents";
+import TicketItem from "./components/InventoryItems/Events/TicketItem";
+import TicketInventory from "./components/Inventories/TicketInventory";
+import AddTickets from "./components/AddItem/AddTickets";
 
 const RouterComponent = () => {
     return (
@@ -65,9 +68,9 @@ const RouterComponent = () => {
                   navigationBarStyle={{ backgroundColor: '#1976D2' }}
                   titleStyle={{  color: '#E3F2FD' }}
                   />
-                  <Scene // Ticket Inventory
+                  <Scene // Event Inventory
                   renderRightButton={
-                      <TouchableWithoutFeedback onPress={ () => { Actions.add_ticket() }}>
+                      <TouchableWithoutFeedback onPress={ () => { Actions.add_event() }}>
                           <Add
                             size={36}
                             color="#E3F2FD"
@@ -78,6 +81,33 @@ const RouterComponent = () => {
                   }
                   renderLeftButton={
                       <TouchableWithoutFeedback onPress={ () => { Actions.main({ type: 'reset' }) }}>
+                          <Add
+                              size={36}
+                              color="#E3F2FD"
+                              name="arrow-left"
+                              style={{ marginHorizontal: 10}}
+                          />
+                      </TouchableWithoutFeedback>
+                  }
+                  key="event_inventory"
+                  component={EventInventory}
+                  title="Events"
+                  navigationBarStyle={{ backgroundColor: '#1976D2' }}
+                  titleStyle={{  color: '#E3F2FD' }}
+                  />
+                  <Scene // Tickets Inventory
+                  renderRightButton={
+                      <TouchableWithoutFeedback onPress={ () => { Actions.add_tickets() }}>
+                          <Add
+                              size={36}
+                              color="#E3F2FD"
+                              name="plus"
+                              style={{ marginHorizontal: 10}}
+                          />
+                      </TouchableWithoutFeedback>
+                  }
+                  renderLeftButton={
+                      <TouchableWithoutFeedback onPress={ () => { Actions.event_inventory }}>
                           <Add
                               size={36}
                               color="#E3F2FD"
@@ -173,14 +203,31 @@ const RouterComponent = () => {
                   navigationBarStyle={{ backgroundColor: '#1976D2' }}
                   titleStyle={{  color: '#E3F2FD' }}
                   />
-                  <Scene // Add Ticket
-                  key="add_ticket"
+                  <Scene // Add Events
+                  key="add_event"
+                  component={AddEvents}
+                  title="Add Event"
+                  navigationBarStyle={{ backgroundColor: '#1976D2' }}
+                  titleStyle={{  color: '#E3F2FD' }}
+                  renderLeftButton={
+                      <TouchableWithoutFeedback onPress={ () => { Actions.event_inventory() } }>
+                          <Add
+                              size={36}
+                              color="#E3F2FD"
+                              name="arrow-left"
+                              style={{ marginHorizontal: 10}}
+                          />
+                      </TouchableWithoutFeedback>
+                  }
+                  />
+                  <Scene // Add Tickets
+                  key="add_tickets"
                   component={AddTickets}
                   title="Add Ticket"
                   navigationBarStyle={{ backgroundColor: '#1976D2' }}
                   titleStyle={{  color: '#E3F2FD' }}
                   renderLeftButton={
-                      <TouchableWithoutFeedback onPress={ () => { Actions.ticket_inventory() } }>
+                      <TouchableWithoutFeedback onPress={ () => { Actions.event_inventory() } }>
                           <Add
                               size={36}
                               color="#E3F2FD"

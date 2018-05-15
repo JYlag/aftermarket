@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import AuthReducer from "./AuthReducer";
 import SignUpReducer from "./SignUpReducer";
-import AddTicketReducer from "./AddItemReducers/AddTicketReducer";
+import AddEventReducer from "./AddItemReducers/AddEventReducer";
 import ItemReducer from "./ItemReducer";
 import AddShoesReducer from "./AddItemReducers/AddShoesReducer";
 import AddElectronicsReducer from "./AddItemReducers/AddElectronicsReducer";
@@ -10,10 +10,12 @@ import SizeDataReducer from "./Data/SizeDataReducer";
 import BrandDataReducer from "./Data/BrandDataReducer";
 import ConditionDataReducer from "./Data/ConditionDataReducer";
 import ElectronicConditionDataReducer from "./Data/ElectronicConditionDataReducer";
+import AddTicketReducer from "./AddItemReducers/AddTicketReducer"
 
 export default combineReducers({
     auth: AuthReducer,
     signup: SignUpReducer,
+    addEvents: AddEventReducer,
     addTickets: AddTicketReducer,
     addShoes: AddShoesReducer,
     addElectronics: AddElectronicsReducer,

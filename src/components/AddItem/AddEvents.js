@@ -4,11 +4,11 @@ import { PlusButton, MinusButton } from "../common";
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import {
-    ticketUpdated,
-    ticketCreate
-} from "../../actions/ItemActions/TicketActions";
+    eventUpdated,
+    eventCreate
+} from "../../actions/ItemActions/EventActions";
 
-class AddTickets extends Component {
+class AddEvents extends Component {
 
     state = {
         sellDate: "",
@@ -33,7 +33,7 @@ class AddTickets extends Component {
             sellDate
         } = this.state;
 
-        this.props.ticketCreate({
+        this.props.eventCreate({
             eventName,
             quantity,
             retailPrice,
@@ -51,7 +51,7 @@ class AddTickets extends Component {
 
         newQuantity = currentQuantity + 1;
 
-        this.props.ticketUpdated({ prop: 'quantity', value: newQuantity});
+        this.props.eventUpdated({ prop: 'quantity', value: newQuantity});
 
         console.log(newQuantity);
     }
@@ -60,7 +60,7 @@ class AddTickets extends Component {
 
         newQuantity = currentQuantity - 1;
 
-        this.props.ticketUpdated({prop: 'quantity', value: newQuantity});
+        this.props.eventUpdated({prop: 'quantity', value: newQuantity});
 
         console.log(newQuantity);
     }
@@ -126,11 +126,11 @@ class AddTickets extends Component {
             <View style={ backgroundStyle }>
                 <View style={ containerStyle }>
                     <View style={{ flexDirection: 'column', borderBottomWidth: 1, borderColor: '#e6e6e6'}}>
-                        <TextInput
-                            placeholder="Enter Event Name"
-                            style={[ inputStyle, { marginLeft: 10 } ]}
-                            onChangeText={ value => this.props.ticketUpdated({ prop: 'eventName', value })}
-                        />
+                    <TextInput
+                        placeholder="Enter Event Name"
+                        style={[ inputStyle, { marginLeft: 10 } ]}
+                        onChangeText={ value => this.props.eventUpdated({ prop: 'eventName', value })}
+                    />
                     </View>
 
                     <View style={{ borderBottomWidth: 1, borderColor: '#e6e6e6'}}>
@@ -138,7 +138,7 @@ class AddTickets extends Component {
                             <Text style={{ marginTop: 5}}>Quantity</Text>
                             <View style={{ flexDirection: 'row'}}>
                                 <MinusButton height={ 40 } width={ 40 }
-                                             onPress={this.onQuantityMinusPress.bind(this, this.props.quantity)}
+                                 onPress={this.onQuantityMinusPress.bind(this, this.props.quantity)}
                                 />
                                 <TextInput
                                     keyboardType='numeric'
@@ -148,7 +148,7 @@ class AddTickets extends Component {
                                     editable={false}
                                 />
                                 <PlusButton height={ 40 } width={ 40 }
-                                            onPress={this.onQuantityPlusPress.bind(this, this.props.quantity)}
+                                 onPress={this.onQuantityPlusPress.bind(this, this.props.quantity)}
                                 />
                             </View>
                         </View>
@@ -163,7 +163,7 @@ class AddTickets extends Component {
                             <View style={ componentStyle}>
                                 <Text style={{ marginTop: 5}}>Retail Price($)</Text>
                                 <TextInput
-                                    onChangeText={ value => this.props.ticketUpdated({ prop: 'retailPrice', value })}
+                                    onChangeText={ value => this.props.eventUpdated({ prop: 'retailPrice', value })}
                                     keyboardType="numeric"
                                     style={ smallInputStyle }
                                 />
@@ -178,7 +178,7 @@ class AddTickets extends Component {
                             <View style={ componentStyle }>
                                 <Text style={{ marginTop: 5}}>Sold($)</Text>
                                 <TextInput
-                                    onChangeText={ value => this.props.ticketUpdated({ prop: 'resellPrice', value })}
+                                    onChangeText={ value => this.props.eventUpdated({ prop: 'resellPrice', value })}
                                     keyboardType="numeric"
                                     style={ smallInputStyle }
                                 />
@@ -193,25 +193,25 @@ class AddTickets extends Component {
                                 <View style={seatText}>
                                     <Text>SEC</Text>
                                     <TextInput
-                                        onChangeText={ value => this.props.ticketUpdated({ prop: 'section', value })}
-                                        style={ seatInputStyle }
-                                        returnKeyType="done"
+                                    onChangeText={ value => this.props.eventUpdated({ prop: 'section', value })}
+                                    style={ seatInputStyle }
+                                    returnKeyType="done"
                                     />
                                 </View>
                                 <View style={seatText}>
                                     <Text>ROW</Text>
                                     <TextInput
-                                        onChangeText={ value => this.props.ticketUpdated({ prop: 'row', value })}
-                                        style={ seatInputStyle }
-                                        returnKeyType="done"
+                                    onChangeText={ value => this.props.eventUpdated({ prop: 'row', value })}
+                                    style={ seatInputStyle }
+                                    returnKeyType="done"
                                     />
                                 </View>
                                 <View style={seatText}>
                                     <Text>SEAT</Text>
                                     <TextInput
-                                        onChangeText={ value => this.props.ticketUpdated({ prop: 'seat', value })}
-                                        style={ seatInputStyle }
-                                        returnKeyType="done"
+                                    onChangeText={ value => this.props.eventUpdated({ prop: 'seat', value })}
+                                    style={ seatInputStyle }
+                                    returnKeyType="done"
                                     />
                                 </View>
                             </View>
@@ -228,10 +228,10 @@ class AddTickets extends Component {
                             borderColor: '#e6e6e6'
                         }}>
                             <TextInput
-                                onChangeText={ value => this.props.ticketUpdated({ prop: 'otherInfo', value })}
-                                multiline={true}
-                                returnKeyType="done"
-                                style={{ height: 100 }}
+                            onChangeText={ value => this.props.eventUpdated({ prop: 'otherInfo', value })}
+                            multiline={true}
+                            returnKeyType="done"
+                            style={{ height: 100 }}
                             />
                         </View>
                     </View>
@@ -325,10 +325,10 @@ const styles = {
 
 const mapStateToProps = (state) => {
 
-    const { eventName, quantity, retailPrice, resellPrice, section, row, seat, otherInfo } = state.addTickets;
+    const { eventName, quantity, retailPrice, resellPrice, section, row, seat, otherInfo } = state.addEvents;
 
     return { eventName, quantity, retailPrice, resellPrice, section, row, seat, otherInfo };
 
 };
 
-export default connect(mapStateToProps, { ticketUpdated, ticketCreate })(AddTickets);
+export default connect(mapStateToProps, { eventUpdated, eventCreate })(AddEvents);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, ListView } from 'react-native';
 import { connect } from 'react-redux';
-import TicketItem from "../components/InventoryItems/TicketItem";
-import { fetchItems } from "../actions/ItemActions/TicketActions";
+import TicketItem from "../components/InventoryItems/Events/EventItem";
+import { fetchItems } from "../actions/ItemActions/EventActions";
 import _ from 'lodash';
 
 
